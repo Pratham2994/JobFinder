@@ -16,12 +16,17 @@ const SignupModal = ({ open, onClose }) => {
     formData.append('password', password);
     formData.append('role', role);
 
-
     try {
       const response = await axios.post('http://localhost/JobFinder/Backend/public/api.php', formData, { withCredentials: true });
       console.log(response.data);
       if (response.data.success) {
         alert(response.data.message);
+
+        setName('');
+        setEmail('');
+        setPassword('');
+        setRole('');
+        
         onClose();
       } else {
         alert(response.data.message);
@@ -77,7 +82,6 @@ const SignupModal = ({ open, onClose }) => {
       </Box>
     </Modal>
   );
-  
 };
 
 export default SignupModal;
